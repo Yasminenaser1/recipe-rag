@@ -23,11 +23,16 @@ def answer(query):
 
 {context}
 
-The user has: {query}
+The user asked for: {query}
 
-Pick the ONE recipe that best fits what they have. Name it, say why,
-and list which ingredients they're missing. If none fit well, say so
-honestly rather than forcing a match."""
+Their request may name ingredients they have, or a dish or type of food
+they want. Interpret it sensibly.
+
+First decide: does any recipe above actually satisfy the request? If not,
+say so plainly and stop - do not recommend the closest thing. Recommending
+an unsuitable recipe is worse than saying you have nothing.
+
+If one does fit, name it, say why, and list what they'd need to buy."""
 
     resp = with_retry(lambda: groq.chat.completions.create(
         model="openai/gpt-oss-120b",
