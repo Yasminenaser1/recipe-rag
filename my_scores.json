@@ -1,0 +1,44 @@
+[
+  {
+    "index": 0,
+    "query": "cheese ball",
+    "grounded": 3,
+    "helpful": 1,
+    "honest": 1
+  },
+  {
+    "index": 5,
+    "query": "chicken and rice",
+    "grounded": 3,
+    "helpful": 3,
+    "honest": 3
+  },
+  {
+    "index": 7,
+    "query": "a no-bake dessert",
+    "grounded": 3,
+    "helpful": 2,
+    "honest": 3
+  },
+  {
+    "index": 9,
+    "query": "eggs and cheese",
+    "grounded": 3,
+    "helpful": 3,
+    "honest": 3
+  },
+  {
+    "index": 12,
+    "query": "pad thai",
+    "grounded": 3,
+    "helpful": 1,
+    "honest": 1
+  },
+  {
+    "index": 13,
+    "query": "vegan curry",
+    "grounded": 3,
+    "helpful": 1,
+    "honest": 2
+  }
+]
