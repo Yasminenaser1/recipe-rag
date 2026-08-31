@@ -11,6 +11,7 @@ retrieval and generation quality.
 - `generate_answers.py` — full RAG: retrieval + generation via Groq
 - `run_eval.py` — scores retrieval against a hand-built eval set
 - `judge.py` — LLM-as-judge scoring of generation quality
+- `agent_rag.py` — agentic retrieval: retrieve, evaluate, reformulate loop
 
 ## Results
 
