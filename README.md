@@ -50,3 +50,27 @@ Why it didn't help: reformulation only pays off when the right document
 exists but the first phrasing missed it. First-pass retrieval was already at
 100% recall@5, so a second search had nothing left to find. The queries that
 fail (pad thai, sushi) fail because the corpus lacks the recipe entirely.
+
+## Hybrid search + reranking
+
+| approach | MRR |
+|---|---|
+| vector only | 0.878 |
+| + BM25 (reciprocal rank fusion) | 0.933 |
+| + cross-encoder rerank | 1.000 |
+
+BM25 fixed two queries vector search got wrong. "A no-bake dessert" went from
+rank 5 to rank 1 — the literal string "no-bake" is in the titles, and keyword
+matching catches what the embedding blurs into general dessert-ness.
+
+But BM25 broke "eggs and cheese," dropping it from rank 1 to rank 5. Keyword
+matching floods results with every recipe that merely contains eggs or cheese.
+
+The cross-encoder fixed that, because it reads query and document together and
+can tell "a dish about eggs and cheese" from "a dish containing them."
+
+Caveat: MRR 1.000 on 12 queries means the eval set is now too easy to detect
+further change in either direction. Expanding it is the next step.
+
+Cost: reranking runs 20 forward passes per query instead of one vector lookup.
+No API charge (the cross-encoder runs locally) but real latency.
