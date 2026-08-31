@@ -34,3 +34,18 @@ framing moved every failing case to 3/3.
 Building the eval set taught more than building the pipeline. Two early
 "failures" turned out to be wrong expectations rather than bad retrieval — the
 corpus had 10 dip recipes when my answer key listed 2.
+
+## Agentic RAG: made things slightly worse
+
+Added a retrieve → evaluate → reformulate loop. An LLM checks whether the
+retrieved recipes satisfy the request and reformulates the query if not,
+up to 3 attempts, with repeat detection to stop pointless loops.
+
+Judge scores went down on two queries: "eggs and cheese" dropped from 3 to 2
+on groundedness, "pad thai" from 3 to 2 on helpfulness. Everything else was
+unchanged. Cost went up 2-3x in LLM calls.
+
+Why it didn't help: reformulation only pays off when the right document
+exists but the first phrasing missed it. First-pass retrieval was already at
+100% recall@5, so a second search had nothing left to find. The queries that
+fail (pad thai, sushi) fail because the corpus lacks the recipe entirely.

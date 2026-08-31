@@ -1,0 +1,14 @@
+query                  mine (g/h/o)   judge (g/h/o) 
+-------------------------------------------------------
+cheese ball            3/1/1            3/3/3           
+  judge says: The assistant chose a listed Cheese Ball recipe, gave a plausible ingredient list, and directly answered the request without inventing unrelated recipes.
+chicken and rice       3/3/3            3/3/3           
+  judge says: The answer correctly picks the provided Chicken Breasts With Wild Rice recipe, gives a useful ingredient list, and honestly matches the request without fabricating content.
+a no-bake dessert      3/2/3            3/3/3           
+  judge says: The assistant correctly used only the given recipes, honestly noted none are no‑bake, and gave a useful answer.
+eggs and cheese        3/3/3            2/3/3           
+  judge says: Used the correct recipe title but fabricated ingredient details, still helpful and honest.
+pad thai               3/1/1            3/2/3           
+  judge says: The assistant correctly stated no Pad Thai recipe was given, but offered no alternative guidance.
+vegan curry            3/1/2            3/3/3           
+  judge says: The assistant correctly noted that none of the provided recipes match a vegan curry, without fabricating any content.
