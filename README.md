@@ -57,11 +57,14 @@ fail (pad thai, sushi) fail because the corpus lacks the recipe entirely.
 
 ## Hybrid search + reranking
 
-| approach | MRR |
+| approach | MRR (15 queries) |
 |---|---|
-| vector only | 0.878 |
-| + BM25 (reciprocal rank fusion) | 0.933 |
-| + cross-encoder rerank | 1.000 |
+| vector only | 0.802 |
+| + BM25 (reciprocal rank fusion) | 0.836 |
+| + cross-encoder rerank | 0.967 |
+
+(An earlier 12-query set gave 0.878 / 0.933 / 1.000. A perfect score meant the
+set was too easy to detect further change, so I added five harder queries.)
 
 BM25 fixed two queries vector search got wrong. "A no-bake dessert" went from
 rank 5 to rank 1 — the literal string "no-bake" is in the titles, and keyword
@@ -73,8 +76,15 @@ matching floods results with every recipe that merely contains eggs or cheese.
 The cross-encoder fixed that, because it reads query and document together and
 can tell "a dish about eggs and cheese" from "a dish containing them."
 
-Caveat: MRR 1.000 on 12 queries means the eval set is now too easy to detect
-further change in either direction. Expanding it is the next step.
+The clearest illustration is the query "sandwiches." Vector search found a
+match at rank 6. Hybrid found nothing at all — the word "sandwiches" appears in
+no title, so BM25 contributed pure noise and pushed the real answers (Sloppy
+Joes, Spanish Hamburgers) out of the list entirely. The cross-encoder recovered
+it to rank 2.
+
+That is the case for all three layers: BM25 helps when query terms appear
+literally and actively hurts when they don't, and the cross-encoder cleans up
+after both.
 
 Cost: reranking runs 20 forward passes per query instead of one vector lookup.
 No API charge (the cross-encoder runs locally) but real latency.

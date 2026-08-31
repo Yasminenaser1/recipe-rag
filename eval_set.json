@@ -117,5 +117,40 @@
     "query": "sushi rolls",
     "expected": [],
     "difficulty": "hard"
+  },
+  {
+    "query": "pizza",
+    "expected": [
+      "Fruit Pizza",
+      "Pizza Casserole"
+    ],
+    "difficulty": "hard"
+  },
+  {
+    "query": "a green salad",
+    "expected": [
+      "Cucumber Salad With Dill",
+      "Broccoli Salad",
+      "Three Bean Salad"
+    ],
+    "difficulty": "hard"
+  },
+  {
+    "query": "sandwiches",
+    "expected": [
+      "Sloppy Joes",
+      "Spanish Hamburgers"
+    ],
+    "difficulty": "hard"
+  },
+  {
+    "query": "oatmeal",
+    "expected": [],
+    "difficulty": "hard"
+  },
+  {
+    "query": "cereal",
+    "expected": [],
+    "difficulty": "hard"
   }
 ]
