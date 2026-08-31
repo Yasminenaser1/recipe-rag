@@ -6,12 +6,16 @@ retrieval and generation quality.
 ## Files
 
 - `get_data.py` — pulls 300 recipes from the `corbt/all-recipes` dataset
-- `index.py` / `index2.py` — embeds with `all-MiniLM-L6-v2`, stores in ChromaDB
+- `index.py` — embeds full recipe text (superseded, kept for comparison)
+- `index2.py` — embeds title + ingredients only (current)
 - `query.py` — retrieval only
 - `generate_answers.py` — full RAG: retrieval + generation via Groq
 - `run_eval.py` — scores retrieval against a hand-built eval set
 - `judge.py` — LLM-as-judge scoring of generation quality
 - `agent_rag.py` — agentic retrieval: retrieve, evaluate, reformulate loop
+- `hybrid.py` — BM25 + vector search fused with reciprocal rank fusion
+- `rerank.py` — cross-encoder reranking over the hybrid shortlist (current best)
+- `eval_mrr.py` / `eval_mrr_hybrid.py` — MRR scoring for vector-only and hybrid
 
 ## Results
 
